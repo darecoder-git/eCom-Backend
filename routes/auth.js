@@ -26,36 +26,19 @@ router.post("/register",async(req,res)=>{
 
 
 //LOGIN
+
 router.post("/login",async(req,res)=>{
-
    try{
-      
-   
       const user=await user.findone({username:req.body.user});
-      const hashpassword=
-
-
-
+      const hashpassword=CryptoJS.AES.decrypt(
+      user.password,
+      process.env.Pass_SEC
+      );
+   const password=hashedPassword.toString(CryptoJS.enc.utf8);
 
    }
    catch(err){
     res.status(500).json(err)
-
-
-
    }
-
-
-})
-
-
-
-
-
-
-
-
-
- 
-
+});
 module.exports=router;
