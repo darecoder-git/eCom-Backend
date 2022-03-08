@@ -20,12 +20,15 @@ return res.status(401).json("you are not authenticated");
 const verifyTokenAndAuthorization=(req,res,next)=>{
 verifyToken(req,res,()=>{
 if(req.user.id===req.params.id||req.params.isAdmin){
+  next()
 
 }
-
-
+else
+{
+  res.status(403).json("you are bot allowed!!!");
 }
 
-)
+});
 
-}
+};
+module.exports={verifyToken,verifyTokenAndAuthorization};
